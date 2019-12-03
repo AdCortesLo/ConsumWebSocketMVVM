@@ -37,6 +37,7 @@ namespace ConsumWebSocketMVVM.ViewModel
                     
                     TaskFactoryStartNew(cts, socket);
                     Visible = "Hidden";
+                    
                     break;
 
                 case "Enviar":
