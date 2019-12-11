@@ -32,7 +32,7 @@ namespace ConsumWebSocketMVVM.ViewModel
                 case "GuardarUsuario":
                     string nom = Usuari;
 
-                    string wsUri = string.Format("wss://localhost:44356/api/websocket?nom={0}", nom);
+                    string wsUri = string.Format("wss://localhost:44391/api/websocket?nom={0}", nom);
                     await socket.ConnectAsync(new Uri(wsUri), cts.Token);
                     
                     TaskFactoryStartNew(cts, socket);

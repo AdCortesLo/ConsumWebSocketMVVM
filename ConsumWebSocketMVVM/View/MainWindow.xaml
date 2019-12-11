@@ -6,11 +6,11 @@
         xmlns:local="clr-namespace:ConsumWebSocketMVVM"
         xmlns:ViewModel="clr-namespace:ConsumWebSocketMVVM.ViewModel" x:Class="ConsumWebSocketMVVM.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="527" Width="711">
+        Title="MainWindow" Height="511" Width="703">
     <Window.DataContext>
         <ViewModel:MainWindowViewModel/>
     </Window.DataContext>
-    <Grid>
+    <Grid Background="#FF8EA8AE">
         <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="339" Margin="10,33,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="677" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Visible" ScrollViewer.CanContentScroll="True" Text="{Binding ContenidoChat, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" RenderTransformOrigin="0.5,0.5">
             <TextBox.RenderTransform>
                 <TransformGroup>
@@ -23,9 +23,9 @@
         </TextBox>
         <TextBox x:Name="textBox1" HorizontalAlignment="Left" Height="41" Margin="8,376,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="572" Text="{Binding Mensaje, UpdateSourceTrigger=PropertyChanged}"/>
         <Button x:Name="Enviar" Content="Enviar" HorizontalAlignment="Left" Margin="585,376,0,0" VerticalAlignment="Top" Width="100" Command="{Binding BtsCommand}" CommandParameter="{Binding Name, RelativeSource= {RelativeSource Self}}" Height="41"/>
-        <TextBox x:Name="textBox2" HorizontalAlignment="Left" Height="23" Margin="10,455,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="288" Text="{Binding Usuari, UpdateSourceTrigger=PropertyChanged}" Visibility="{Binding Visible}"/>
-        <Button x:Name="GuardarUsuario" Content="Iniciar sessió" HorizontalAlignment="Left" Margin="303,455,0,0" VerticalAlignment="Top" Width="95" Command="{Binding BtsCommand}" CommandParameter="{Binding Name, RelativeSource= {RelativeSource Self}}" Visibility="{Binding Visible}" Height="23"/>
-        <Label x:Name="label" Content="Usuari" HorizontalAlignment="Left" Margin="10,429,0,0" VerticalAlignment="Top" Width="59"/>
-        <Label x:Name="label1" Content="Xat" HorizontalAlignment="Left" Margin="10,7,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="textBox2" HorizontalAlignment="Left" Height="23" Margin="10,448,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="288" Text="{Binding Usuari, UpdateSourceTrigger=PropertyChanged}" Visibility="{Binding Visible}"/>
+        <Button x:Name="GuardarUsuario" Content="Iniciar sessió" HorizontalAlignment="Left" Margin="303,448,0,0" VerticalAlignment="Top" Width="95" Command="{Binding BtsCommand}" CommandParameter="{Binding Name, RelativeSource= {RelativeSource Self}}" Visibility="{Binding Visible}" Height="23"/>
+        <Label x:Name="label" Content="Usuari" HorizontalAlignment="Left" Margin="8,422,0,0" VerticalAlignment="Top" Width="43" Height="26"/>
+        <Label x:Name="label1" Content="Xat" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="24"/>
     </Grid>
 </Window>
