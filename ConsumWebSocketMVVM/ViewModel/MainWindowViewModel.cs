@@ -1,6 +1,7 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Net.WebSockets;
@@ -32,12 +33,11 @@ namespace ConsumWebSocketMVVM.ViewModel
                 case "GuardarUsuario":
                     string nom = Usuari;
 
-                    string wsUri = string.Format("wss://localhost:44391/api/websocket?nom={0}", nom);
+                    string wsUri = string.Format("wss://localhost:44387/api/websocket?nom={0}", nom);
                     await socket.ConnectAsync(new Uri(wsUri), cts.Token);
                     
                     TaskFactoryStartNew(cts, socket);
                     Visible = "Hidden";
-                    
                     break;
 
                 case "Enviar":
@@ -71,9 +71,30 @@ namespace ConsumWebSocketMVVM.ViewModel
                                     WebSocketReceiveResult rcvResult = await socket.ReceiveAsync(rcvBuffer, cts.Token);
                                     byte[] msgBytes = rcvBuffer.Skip(rcvBuffer.Offset).Take(rcvResult.Count).ToArray();
                                     string rcvMsg = Encoding.UTF8.GetString(msgBytes);
-                                    ContenidoChat += rcvMsg + "\n";
+
+                                    if (!rcvMsg.StartsWith(";"))
+                                        ContenidoChat += rcvMsg + "\n";
+                                    else
+                                        ObtenerListaUsuaris(rcvMsg);
                                 }
                             }, cts.Token, TaskCreationOptions.LongRunning, TaskScheduler.Default);
+        }
+
+        private void ObtenerListaUsuaris(string lista)
+        {
+            lista = lista.TrimStart(';');
+            ListaUsuaris = new ObservableCollection<string>(lista.Split(';'));
+        }
+
+        private ObservableCollection<string> _listaUsuaris;
+        public ObservableCollection<string> ListaUsuaris
+        {
+            get { return _listaUsuaris; }
+            set
+            {
+                _listaUsuaris = value;
+                NotifyPropertyChanged();
+            }
         }
 
         private string _visible;
